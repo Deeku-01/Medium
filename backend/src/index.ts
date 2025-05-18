@@ -1,6 +1,7 @@
 import { Hono } from 'hono'
 import { UserRouter } from './Routers/UserRouter';
 import { BlogRouter } from './Routers/BlogRouter';
+import { cors } from 'hono/cors';
 
 //connect to prisma without acceelerate and it should be declared in every route
 
@@ -12,6 +13,7 @@ const app = new Hono<{
   }
 }>()
 
+app.use('/api/*', cors())
 app.route('/api/v1/user',UserRouter)
 app.route('/api/v1/blog',BlogRouter)
 
